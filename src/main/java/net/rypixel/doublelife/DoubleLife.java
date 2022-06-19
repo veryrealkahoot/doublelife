@@ -74,8 +74,14 @@ public final class DoubleLife extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equalsIgnoreCase("doublelife")) {
-            if (args.length < 0) {
-//                print the help
+            if (args.length < 0 || args[0] == "help") {
+                if (sender instanceof Player) {
+                    Player p = (Player) sender;
+                    p.sendMessage("Usage: /doublelife [start/settings/help]");
+                } else {
+                    Bukkit.getLogger().info("Usage: /doublelife [start/help]");
+                    Bukkit.getLogger().info("To view settings, run this command on a Minecraft client");
+                }
             }
             switch (args[0]) {
                 case "start":
