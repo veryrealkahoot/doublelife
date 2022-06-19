@@ -74,7 +74,7 @@ public final class DoubleLife extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equalsIgnoreCase("doublelife")) {
-            if (args.length < 0 || args[0] == "help") {
+            if (args.length < 1) {
                 if (sender instanceof Player) {
                     Player p = (Player) sender;
                     p.sendMessage("Usage: /doublelife [start/settings/help]");
@@ -82,6 +82,7 @@ public final class DoubleLife extends JavaPlugin implements Listener {
                     Bukkit.getLogger().info("Usage: /doublelife [start/help]");
                     Bukkit.getLogger().info("To view settings, run this command on a Minecraft client");
                 }
+                return true;
             }
             switch (args[0]) {
                 case "start":
@@ -102,6 +103,15 @@ public final class DoubleLife extends JavaPlugin implements Listener {
                     }
                     Inventory inv = Inventories.getSettingsMenu();
                     ((Player) sender).openInventory(inv);
+                    break;
+                case "help":
+                    if (sender instanceof Player) {
+                        Player p = (Player) sender;
+                        p.sendMessage("Usage: /doublelife [start/settings/help]");
+                    } else {
+                        Bukkit.getLogger().info("Usage: /doublelife [start/help]");
+                        Bukkit.getLogger().info("To view settings, run this command on a Minecraft client");
+                    }
                     break;
             }
         }
@@ -208,6 +218,7 @@ public final class DoubleLife extends JavaPlugin implements Listener {
                 Inventory inv = Inventories.getSettingsMenu();
                 ((Player) event.getWhoClicked()).openInventory(inv);
             }
+            return;
         }
 
         if (!gameStarted && event.getView().getTitle().equalsIgnoreCase("Settings - Life Count")) {
@@ -232,9 +243,10 @@ public final class DoubleLife extends JavaPlugin implements Listener {
                     break;
             }
             if (refreshView) {
-                Inventory inv = Inventories.getSettingsMenu();
+                Inventory inv = Inventories.getLifeCountManager();
                 ((Player) event.getWhoClicked()).openInventory(inv);
             }
+            return;
         }
     }
 

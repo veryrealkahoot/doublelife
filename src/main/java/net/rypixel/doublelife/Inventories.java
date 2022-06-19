@@ -41,7 +41,7 @@ public class Inventories {
         lore.add("Manage the amount of");
         lore.add("starting lives each");
         lore.add("team has");
-        inv.setItem(2, getItem(Material.NETHER_STAR, "Manage Lives", lore));
+        inv.setItem(3, getItem(Material.NETHER_STAR, "Manage Lives", lore));
         lore.clear();
 
         return inv;
@@ -54,21 +54,21 @@ public class Inventories {
 
         lore.add("Decrease the starting");
         lore.add("life count");
-        inv.setItem(4, getItem(Material.COAL, "Decrease", lore));
+        inv.setItem(3, getItem(Material.COAL, "Decrease", lore));
         lore.clear();
 
         if (GameData.startingLives == 1) {
-            inv.setItem(5, getItem(Material.NETHER_STAR, GameData.startingLives + " Life", lore));
+            inv.setItem(4, getItem(Material.NETHER_STAR, GameData.startingLives + " Life", lore));
         } else {
-            inv.setItem(5, getItem(Material.NETHER_STAR, GameData.startingLives + " Lives", lore));
+            inv.setItem(4, getItem(Material.NETHER_STAR, GameData.startingLives + " Lives", lore));
         }
 
         lore.add("Increase the starting");
         lore.add("life count");
-        inv.setItem(6, getItem(Material.DIAMOND, "Increase", lore));
+        inv.setItem(5, getItem(Material.DIAMOND, "Increase", lore));
         lore.clear();
 
-        inv.setItem(6, getItem(Material.ARROW, "Back", lore));
+        inv.setItem(8, getItem(Material.ARROW, "Back", lore));
         lore.clear();
 
         return inv;
@@ -99,7 +99,6 @@ public class Inventories {
         for (String str : oldLore) {
             lore.add(ChatColor.WHITE + str);
         }
-        lore.add("");
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.AQUA + name);
